@@ -7,28 +7,6 @@ Dazu wird das Modul **JUnit Platform Console Standalone (Version 1.10.0)** verwe
 
 ---
 
-## Projektstruktur
-
-Das Projekt sollte folgendermaßen aufgebaut sein:
-
-```
-projektverzeichnis/
-│
-├── lib/
-│   └── junit-platform-console-standalone-1.10.0.jar
-│
-├── src/
-│   └── TestHelloWorld.java
-│
-├── out/
-│
-├── compileAndRunTests.sh
-├── .gitignore
-└── README.md
-```
-
----
-
 ## JUnit-Bibliothek
 
 Die Datei **`junit-platform-console-standalone-1.10.0.jar`** muss im Unterverzeichnis  
@@ -36,32 +14,6 @@ Die Datei **`junit-platform-console-standalone-1.10.0.jar`** muss im Unterverzei
 
 Download-Link:  
 🔗 <https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.10.0/junit-platform-console-standalone-1.10.0.jar>
-
----
-
-## Beispiel-Testklasse
-
-Die Testklasse **`TestHelloWorld.java`** dient nur dazu, das Setup zu überprüfen:
-
-```java
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
-class TestHelloWorld {
-
-    @Test
-    void testAddition() {
-        int result = 2 + 3;
-        assertEquals(5, result, "2 + 3 sollte 5 ergeben");
-    }
-
-    @Test
-    void testStringNotNull() {
-        String s = "JUnit funktioniert!";
-        assertNotNull(s, "String darf nicht null sein");
-    }
-}
-```
 
 ---
 
@@ -90,37 +42,6 @@ java -jar lib/junit-platform-console-standalone-1.10.0.jar --class-path out --sc
 
 - `--class-path out` → Pfad zu den kompilierten Klassen
 - `--scan-classpath` → durchsucht automatisch alle Testklassen im Classpath
-
----
-
-## Alternative: Bash-Skript
-
-Die Schritte lassen sich mit einem Skript automatisieren:
-
-**Datei:** `compileAndRunTests.sh`
-
-```bash
-#!/bin/bash
-set -e
-
-# Kompilieren
-javac -cp lib/junit-platform-console-standalone-1.10.0.jar -d out src/TestHelloWorld.java
-
-# Tests ausführen
-java -jar lib/junit-platform-console-standalone-1.10.0.jar --class-path out --scan-classpath
-```
-
-Skript ausführbar machen:
-
-```bash
-chmod +x compileAndRunTests.sh
-```
-
-Skript starten:
-
-```bash
-./compileAndRunTests.sh
-```
 
 ---
 
