@@ -1,0 +1,66 @@
+<project>
+<modelVersion>4.0.0</modelVersion>
+<groupId>de.hsd.medien.se</groupId>
+<artifactId>hsdchess</artifactId>
+<version>0.0.1</version>
+<properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>23</maven.compiler.source>
+        <maven.compiler.target>23</maven.compiler.target>
+</properties>
+	<repositories>
+		<repository>
+			<id>lalyos-snapshots</id>
+			<url>https://github.com/lalyos/mvn-repo/raw/master/snapshots</url>
+		</repository>
+	</repositories>
+<dependencies>
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>5.9.1</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>com.github.lalyos</groupId>
+        <artifactId>jfiglet</artifactId>
+        <version>0.0.8</version>
+    </dependency>
+</dependencies>
+<build>
+    <plugins>
+        <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.8.1</version>
+        </plugin>
+        <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.0.0-M6</version>
+        </plugin>
+        <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <archive>
+                            <manifest>
+                                <mainClass>
+                                    de.hsd.medien.se.hsdchess.HsdChess
+                                </mainClass>
+                            </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+    </plugins>
+</build>
+</project>
