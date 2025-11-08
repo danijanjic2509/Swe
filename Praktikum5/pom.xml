@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+<!-- ========== SCHRITT 1 ========== -->
+    <!-- Identifikations des Projektes -->
+    <groupId>de.hsd.medien.se</groupId>     <!-- Gruppe -->
+    <artifactId>hsdchess</artifactId>   <!-- Projektname -->
+    <version>0.0.1</version>         <!-- Projekt-Version -->
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>18</maven.compiler.source>
+        <maven.compiler.target>18</maven.compiler.target>
+    </properties>
+<!-- ========== SCHRITT 2.2 & 4 ========== -->
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.9.1</version>
+             <!-- scope=test bedeutet: nur für Tests, nicht im fertigen JAR -->
+            <scope>test</scope>
+        </dependency>
+        <!-- SCHRITT 4: jfiglet -->
+        <dependency>
+            <groupId>com.github.lalyos</groupId>
+            <artifactId>jfiglet</artifactId>
+            <version>0.0.8</version>
+        </dependency>
+    </dependencies>
+
+<repositories>
+        <repository>
+            <id>lalyos-snapshots</id>
+            <url>https://github.com/lalyos/mvn-repo/raw/master/snapshots</url>
+        </repository>
+    </repositories>
+
+    <build>
+    <!-- SCHRITT 3 -->
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M6</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                      <!-- Wird in der package-Phase ausgeführt -->
+                        <phase>package</phase>
+                        <goals>
+                          <!-- single erstellt ein einziges JAR mit allem -->
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                 <!-- Klasse wird ausgeführt -->
+                                    <mainClass>
+                                        de.hsd.medien.se.hsdchess.HsdChess
+                                    </mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                            <!-- jar-with-dependencies = JAR + alle Bibliotheken -->
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
